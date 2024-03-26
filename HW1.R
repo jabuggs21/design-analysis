@@ -22,6 +22,8 @@ t.test(q2x, q2y, var.equal = TRUE)
 ##Part 1
 #install e1071
 install.packages(e1071)
+install.packages("boot")
+library("boot")
 library(e1071)
 #copy data
 q3 <- read.table(file = "clipboard", sep = "\t", header = TRUE)
@@ -35,6 +37,7 @@ skewness(q3x$V2)
 kurtosis(q3x$V2)
 var(q3x$V2)
 sd(q3x$V2)
+
 #central tendency test
 mean(q3y$V2)
 median(q3y$V2)
@@ -43,13 +46,22 @@ kurtosis(q3y$V2)
 var(q3y$V2)
 sd(q3y$V2)
 
+##Standard error
+install.packages("plotrix")
+library("plotrix")
+std.error(q3x$V2)
+std.error(q3y$V2)
+
 #Part 2
 skewtest <- -0.0987
 skewstand <- -0.1767
 kurttest <- -0.9550
 kurtstand <- -0.5738
-#Mann-WhitneyWilcox Test for skewness/kurtosis
-wilcox.test(skewstand, skewtest)
-wilcox.test(kurtstand, kurttest)
+
+#1 sample t-test, 2 tailed
+t.test(c(skewtest, skewstand, mu = 0))
+t.test(c(kurttest, kurtstand, mu = 0))
+
+
 
 
