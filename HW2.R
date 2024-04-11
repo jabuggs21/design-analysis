@@ -30,6 +30,12 @@ powres <- read.table(file = "clipboard", sep = "\t", header = TRUE)
 leveneTest(ResidualR ~ Group, data = rawres)
 leveneTest(ResidualP ~ Group, data = powres)
 
+#Normality plot
+with(q1, hist(resid(aov(Time ~ Treatment))))
+
+#QQ plot
+with(q1, qqnorm(resid(aov(Time ~ Treatment))))
+
 ##1 factor ANOVA (Model 1)
 q1 <- read.table(file = "clipboard", sep = "\t", header = TRUE)
 q1.aov <- aov(Time ~ Treatment, data = q1)
