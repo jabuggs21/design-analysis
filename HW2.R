@@ -75,10 +75,10 @@ TukeyHSD(q3.aov, "Weeks:Ashfall")
 
 
 ###Question 4
-##1 factor ANOVA (Model 1)
+##2 factor nested ANOVA (Mixed Model)
 q4 <- read.table(file = "clipboard", sep = "\t", header = TRUE)
-q4.aov <- aov(Otter ~ Killer, data = q4)
+q4.aov <- aov(otter ~ Killer + island/Killer + location/island, data = q4)
 summary(q4.aov)
 
-#follow-up: Tukey Test
-TukeyHSD(q4.aov)
+
+
